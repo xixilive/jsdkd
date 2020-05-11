@@ -1,0 +1,19 @@
+{
+  "name": "wxjssdk",
+  "version": "1.0.0",
+  "description": "wx jssdk utilities server",
+  "main": "index.js",
+  "author": "xixilive@gmail.com",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node ./src/server.js",
+    "build": "docker build -t registry.cn-hangzhou.aliyuncs.com/brainet/wxjssdk-server ."
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.22.0",
+    "node-fetch": "^2.6.0"
+  }
+}

@@ -31,7 +31,7 @@ module.exports = function(client, cache){
       const data = {jsapi_ticket, noncestr, timestamp, url: options.url}
       const candidate = Object.keys(data).sort().map(k=>`${k}=${data[k]}`).join('&')
       const signature = createHash('sha1').update(candidate).digest('hex')
-      return {...options, timestamp, nonceStr: noncestr, signature}
+      return {...options, appId, timestamp, nonceStr: noncestr, signature}
     }
   }
 }

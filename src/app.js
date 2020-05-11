@@ -20,6 +20,7 @@ app.use(cors({origin: corsOrigin}))
 configure(app)
 
 app.use((req, res,next, err) => {
+  console.error(req.path, err.message || String(err))
   res.status(500).end()
 })
 

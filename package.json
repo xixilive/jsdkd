@@ -1,6 +1,6 @@
 {
-  "name": "wxjssdk",
-  "version": "1.0.2",
+  "name": "jsdk-daemon",
+  "version": "1.0.3",
   "description": "wx jssdk utilities server",
   "author": "xixilive@gmail.com",
   "license": "MIT",
@@ -10,7 +10,7 @@
     "test": "yarn lint && jest . --forceExit --detectOpenHandles",
     "start": "node ./src/server.js",
     "dev": "nodemon ./src/server.js",
-    "docker:build": "docker build -t wxjssdk-server ."
+    "docker:build": "docker build -t jsdkd ."
   },
   "engines": {
     "node": ">=10.0.0"
@@ -20,13 +20,13 @@
     "debug": "^4.1.1",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "redis": "^3.0.2"
   },
   "devDependencies": {
     "eslint": "^7.0.0",
     "jest": "^26.0.1",
-    "nodemon": "^2.0.3",
-    "redis": "^3.0.2"
+    "nodemon": "^2.0.3"
   },
   "jest": {
     "automock": false,

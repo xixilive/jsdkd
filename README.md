@@ -42,7 +42,7 @@ dBGMo51NUVEVlQo5
 > 获取wx.config接口数据.
 
 ```
-> POST /jsconfig/wx12345678
+> POST /jsapi/config/wx12345678
 > Content-Type: application/json
 
 {
@@ -70,7 +70,7 @@ dBGMo51NUVEVlQo5
 > 查询access_token和jsapi_ticket, 必须对请求进行签名验证.
 
 ```
-> GET /query/token?appid=wx12345678&realm=R123&nonce=caa3c9d793b&ts=1589203758&sign=1589203758
+> GET /jsapi/query/token?appid=wx12345678&realm=R123&nonce=caa3c9d793b&ts=1589203758&sign=1589203758
 
 < HTTP/1.1 200 OK
 < Content-Type: application/json; charset=utf-8
@@ -83,6 +83,7 @@ dBGMo51NUVEVlQo5
 
 > 请求参数:
 
+- key: `token` or `ticket`
 - appid: 公众号AppId
 - realm: config文件中定义的外部应用key
 - nonce: 随机字符串
@@ -146,7 +147,14 @@ cache: {
 }
 ```
 
-缓存在初始化时会从cache配置节中**仅选取一个**, 换句话说, 你同时只能配置一种缓存策略.
+缓存在初始化时会从cache配置节中**仅选取一个**, 换句话说, 你同时只能配置一种缓存策略. 缓存对象的key的命名方式为: `APP_KEY.[token|ticket]`, 例如:
+
+```sh
+127.0.0.1:6379> KEYS *
+1) "wx123456789.ticket"
+2) "wx123456789.token"
+127.0.0.1:6379> 
+```
 
 - `[realms]`
 

@@ -1,19 +1,42 @@
 {
   "name": "wxjssdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "wx jssdk utilities server",
-  "main": "index.js",
   "author": "xixilive@gmail.com",
   "license": "MIT",
   "private": true,
   "scripts": {
+    "lint": "eslint src __tests__",
+    "test": "yarn lint && jest . --forceExit --detectOpenHandles",
     "start": "node ./src/server.js",
-    "build": "docker build -t registry.cn-hangzhou.aliyuncs.com/brainet/wxjssdk-server ."
+    "dev": "nodemon ./src/server.js",
+    "docker:build": "docker build -t wxjssdk-server ."
+  },
+  "engines": {
+    "node": ">=10.0.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "debug": "^4.1.1",
     "express": "^4.17.1",
     "helmet": "^3.22.0",
     "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "jest": "^26.0.1",
+    "nodemon": "^2.0.3",
+    "redis": "^3.0.2"
+  },
+  "jest": {
+    "automock": false,
+    "bail": true,
+    "roots": [
+      "<rootDir>/__tests__/"
+    ],
+    "testRegex": ".spec.js$",
+    "unmockedModulePathPatterns": [
+      "/node_modules/"
+    ]
   }
 }

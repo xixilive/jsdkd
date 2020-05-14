@@ -14,8 +14,10 @@ ADD yarn.lock /app/
 RUN yarn install --prod --registry=https://registry.npm.taobao.org
 
 ADD src /app/src
+ENV DEBUG jssdk:*
 ENV NODE_ENV production
 ENV APP_CONFIG /app/config.json
+ENV SERVER_PORT 3030
 
 EXPOSE 3030
 

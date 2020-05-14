@@ -1,0 +1,20 @@
+{
+  "cors": [
+    "example\\.com"
+  ],
+  "cache": {
+    "memo": {}
+  },
+  "realms": [
+    {
+      "key": "dummy_realm_key", 
+      "secret": "dummy_realm_secret"
+    }
+  ],
+  "apps": [
+    {
+      "key": "dummy_app_key",
+      "secret": "dummy_app_secret"
+    }
+  ]
+}

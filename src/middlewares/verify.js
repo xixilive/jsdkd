@@ -1,7 +1,7 @@
 const debug = require('debug')('jssdk:verify')
 module.exports = function(diff = 3e5){ // 5 min
   return (req, res, next) => {
-    const {verifyRealmSign, config} = req.wxjssdk
+    const {verifyRealmSign, config} = req.jsdkd
     const {realm: realmKey, nonce, ts, sign} = req.query
     const realm = config.getRealm(realmKey)
     if(!realm) {

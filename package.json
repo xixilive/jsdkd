@@ -1,7 +1,7 @@
 {
-  "name": "jsdk-daemon",
-  "version": "1.0.3",
-  "description": "wx jssdk utilities server",
+  "name": "jsdkd",
+  "version": "1.1.0",
+  "description": "wechat's media platform jssdk utility server",
   "author": "xixilive@gmail.com",
   "license": "MIT",
   "private": true,
@@ -16,12 +16,11 @@
     "node": ">=10.0.0"
   },
   "dependencies": {
+    "@xixilive/jssdk": "^0.0.2",
     "cors": "^2.8.5",
     "debug": "^4.1.1",
     "express": "^4.17.1",
-    "helmet": "^3.22.0",
-    "node-fetch": "^2.6.0",
-    "redis": "^3.0.2"
+    "helmet": "^3.22.0"
   },
   "devDependencies": {
     "eslint": "^7.0.0",

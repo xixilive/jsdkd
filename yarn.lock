@@ -569,6 +569,14 @@
   dependencies:
     "@types/yargs-parser" "*"
 
+"@xixilive/jssdk@^0.0.2":
+  version "0.0.2"
+  resolved "https://registry.npm.taobao.org/@xixilive/jssdk/download/@xixilive/jssdk-0.0.2.tgz#e30da8d4424ad2aef16fcbc4c8535076142370da"
+  integrity sha1-4w2o1EJK0q7xb8vEyFNQdhQjcNo=
+  dependencies:
+    node-fetch "^2.6.0"
+    redis "^3.0.2"
+
 abab@^2.0.3:
   version "2.0.3"
   resolved "https://registry.npm.taobao.org/abab/download/abab-2.0.3.tgz#623e2075e02eb2d3f2475e49f99c91846467907a"
@@ -3291,7 +3299,7 @@ nocache@2.1.0:
 
 node-fetch@^2.6.0:
   version "2.6.0"
-  resolved "https://registry.npm.taobao.org/node-fetch/download/node-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
+  resolved "https://registry.npm.taobao.org/node-fetch/download/node-fetch-2.6.0.tgz?cache=0&sync_timestamp=1587548756169&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fnode-fetch%2Fdownload%2Fnode-fetch-2.6.0.tgz#e633456386d4aa55863f676a7ab0daa8fdecb0fd"
   integrity sha1-5jNFY4bUqlWGP2dqerDaqP3ssP0=
 
 node-int64@^0.4.0:
@@ -3764,7 +3772,7 @@ redis-parser@^3.0.0:
 
 redis@^3.0.2:
   version "3.0.2"
-  resolved "https://registry.npm.taobao.org/redis/download/redis-3.0.2.tgz#bd47067b8a4a3e6a2e556e57f71cc82c7360150a"
+  resolved "https://registry.npm.taobao.org/redis/download/redis-3.0.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fredis%2Fdownload%2Fredis-3.0.2.tgz#bd47067b8a4a3e6a2e556e57f71cc82c7360150a"
   integrity sha1-vUcGe4pKPmouVW5X9xzILHNgFQo=
   dependencies:
     denque "^1.4.1"

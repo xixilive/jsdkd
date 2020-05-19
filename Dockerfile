@@ -9,14 +9,16 @@ RUN mkdir -p /app
 
 WORKDIR /app
 
-ADD package.json /app/
-ADD yarn.lock /app/
+ADD package.json .
+ADD yarn.lock .
 RUN yarn install --prod --registry=https://registry.npm.taobao.org
 
-ADD src /app/src
+ADD src ./src
+RUN echo '{}' > ./jsdkd.json
+
 ENV DEBUG jssdk:*
 ENV NODE_ENV production
-ENV APP_CONFIG /app/config.json
+ENV APP_CONFIG /app/jsdkd.json
 ENV SERVER_PORT 3030
 
 EXPOSE 3030

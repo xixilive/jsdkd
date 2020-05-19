@@ -1,13 +1,18 @@
-# 微信公众号网页开发服务器
+# jsdkd
+
+一个小巧有用的微信公众号应用服务器 + AccessToken缓存服务器
 
 ![Screen Shot](./screen_shot.png)
 
 ## 主要功能
 
-- 允许多个微信公众号.
-- js接口安全域名验证(MP_verify_***.txt 文件请求).
-- 获取jssdk接口配置数据(wx.config函数的参数).
-- 查询缓存的access_token和jsapi_ticket, 可作为中心access_token服务器.
+- [x] Docker镜像秒启.
+- [x] 允许多个微信公众号.
+- [x] js接口安全域名验证(MP_verify_***.txt 文件请求).
+- [x] 获取jssdk接口配置数据(wx.config函数的参数).
+- [x] 多种缓存策略(file/memo/redis).
+- [x] 查询缓存的access_token和jsapi_ticket.
+- [ ] 网页登录授权跳转.
 
 ## RESTful路由
 
@@ -69,10 +74,10 @@ dBGMo51NUVEVlQo5
 
 - `GET /jsapi/query/:key?appid=&realm=&nonce=&ts=&sign=`
 
-> 查询access_token和jsapi_ticket, 必须对请求进行签名验证.
+> 查询access_token和jsapi_ticket, **必须对请求进行签名验证**.
 
 ```
-> GET /jsapi/query/token?appid=wx12345678&realm=R123&nonce=caa3c9d793b&ts=1589203758&sign=1589203758
+> GET /jsapi/query/token?appid=wx12345678&realm=R123&nonce=caa3c9d793b&ts=1589203758&sign=6f3c945fc7a738c1ec80efc8a97187e0
 
 < HTTP/1.1 200 OK
 < Content-Type: application/json; charset=utf-8
@@ -208,8 +213,45 @@ cache: {
 > 服务器按照以下顺序查找配置文件
 
 - `process.env.APP_CONFIG`
-- `config.json` 查找与`src`目录同级的config.json文件.
+- `jsdkd.json` 查找与`src`目录同级的jsdkd.json文件.
 
 ## Docker
 
-see `Dockerfile`
+```sh
+docker run -d \
+  -p 443:3030 \
+  -v ./jsdkd.json:/app/jsdkd.json \
+  xixilive/jsdkd
+```
+
+see [`Dockerfile`](./Dockerfile)
+
+### Nginx + Docker环境示例
+
+```sh
+# start docker container
+docker run -d \
+  -p 127.0.0.1:3030:3030 \
+  -v ./jsdkd.json:/app/jsdkd.json \
+  --name jsdkd \
+  xixilive/jsdkd
+```
+
+```nginx
+# nginx.conf
+
+server {
+    listen 443 ssl; 
+    server_name example.com;
+
+    location ^~ /MP_verify_ {
+        proxy_pass http://127.0.0.1:3030/;
+    }
+
+    location /jsapi/ {
+        proxy_pass http://127.0.0.1:3030/;
+    }
+}
+```
+
+**微信公众号: 前栈笔记**

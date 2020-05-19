@@ -1,5 +1,5 @@
 const {createHash} = require('crypto')
-const {mock} = require('@xixilive/jssdk')
+const {mock} = require('@ultramedia/jssdk')
 const {testServer, http} = require('./helper')
 
 describe('e2e', () => {

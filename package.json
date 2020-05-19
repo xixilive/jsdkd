@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint src __tests__",
     "test": "yarn lint && jest . --forceExit --detectOpenHandles",
-    "start": "node ./src/server.js",
+    "start": "NODE_ENV=production node ./src/server.js",
     "dev": "nodemon ./src/server.js",
     "docker:build": "docker build -t jsdkd ."
   },
@@ -16,7 +16,7 @@
     "node": ">=10.0.0"
   },
   "dependencies": {
-    "@xixilive/jssdk": "^0.0.2",
+    "@ultramedia/jssdk": "^0.1.0",
     "cors": "^2.8.5",
     "debug": "^4.1.1",
     "express": "^4.17.1",

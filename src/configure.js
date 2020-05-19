@@ -1,14 +1,14 @@
 const path = require('path')
 const debug = require('debug')('jsdkd:configure')
-const {createSdk, Config} = require('@xixilive/jssdk')
+const {Sdk, Config} = require('@ultramedia/jssdk')
 const middlewares = require('./middlewares')
 
 module.exports = function configure(app) {
-  const file = process.env.APP_CONFIG || path.join(__dirname, '..', 'config.json')
+  const file = process.env.APP_CONFIG || path.join(__dirname, '..', 'jsdkd.json')
   debug(`load config from: ${file}`)
   const config = Config.load(file)
   debug(`use cache strategy: ${config.cache.type}`)
-  const sdk = createSdk(config)
+  const sdk = Sdk(config)
 
   app.use(middlewares.cors(config))
   app.use((req, _, next) => {

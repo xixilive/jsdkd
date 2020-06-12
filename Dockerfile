@@ -11,7 +11,8 @@ WORKDIR /app
 
 ADD package.json .
 ADD yarn.lock .
-RUN yarn install --prod --registry=https://registry.npm.taobao.org
+RUN yarn install --prod --registry=https://registry.npm.taobao.org \
+  && yarn cache clean
 
 ADD src ./src
 RUN echo '{}' > ./jsdkd.json

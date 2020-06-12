@@ -2,15 +2,16 @@ const {httpError} = require('./utils')
 
 const allowedKeys = ['token', 'ticket']
 module.exports = (req, res, next) => {
-  const {key} = req.params
+  const {appid} = req.params
+  const {key = 'token'} = req.query
   if(!allowedKeys.includes(key)) {
     return next(httpError(400, 'unknown key'))
   }
   
   const {getAccessToken, getTicket, config} = req.jsdkd
-  const app = config.getApp(req.query.appid)
+  const app = config.getApp(appid)
   if(!app) {
-    return next(httpError(404, 'unknown app'))
+    return next(httpError(400, 'unknown app'))
   }
 
   let task = null

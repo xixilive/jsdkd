@@ -24,8 +24,8 @@ describe('e2e', () => {
     expect(res).toEqual('randomString')
   })
 
-  it('POST /jsapi/config/dummy_app_key', async () => {
-    const res = await http.post('/jsapi/config/dummy_app_key', {any: 'data'})
+  it('POST /jsapi/:appid/config', async () => {
+    const res = await http.post('/jsapi/dummy_app_key/config', {any: 'data'})
     expect(res.appId).toEqual('dummy_app_key')
     expect(typeof res.timestamp).toBe('number')
     expect(typeof res.nonceStr).toBe('string')
@@ -33,18 +33,26 @@ describe('e2e', () => {
     expect(res.any).toEqual('data')
   })
 
-  it('GET /jsapi/query/token', async () => {
-    const qs = `realm=dummy_realm_key&nonce=nonce&ts=${Date.now()}`
-    const sign = createHash('md5').update(qs + '.dummy_realm_secret').digest('hex')
-    const res = await http.get(`/jsapi/query/token?appid=dummy_app_key&${qs}&sign=${sign}`)
-    expect(res).toEqual({key: 'token', value: 'access_token'})
-  })
+  describe('GET /jsapi/:appid/query', () => {
+    it('query token by default', async () => {
+      const qs = `realm=dummy_realm_key&nonce=nonce&ts=${Date.now()}`
+      const sign = createHash('md5').update(qs + '.dummy_realm_secret').digest('hex')
+      const res = await http.get(`/jsapi/dummy_app_key/query?${qs}&sign=${sign}`)
+      expect(res).toEqual({key: 'token', value: 'access_token'})
+    })
 
-  it('GET /jsapi/query/ticket', async () => {
-    const qs = `realm=dummy_realm_key&nonce=nonce&ts=${Date.now()}`
-    const sign = createHash('md5').update(qs + '.dummy_realm_secret').digest('hex')
-    const res = await http.get(`/jsapi/query/ticket?appid=dummy_app_key&${qs}&sign=${sign}`)
-    expect(res).toEqual({key: 'ticket', value: 'ticket'})
-  })
+    it('query token', async () => {
+      const qs = `realm=dummy_realm_key&nonce=nonce&ts=${Date.now()}`
+      const sign = createHash('md5').update(qs + '.dummy_realm_secret').digest('hex')
+      const res = await http.get(`/jsapi/dummy_app_key/query?key=token&${qs}&sign=${sign}`)
+      expect(res).toEqual({key: 'token', value: 'access_token'})
+    })
 
+    it('query ticket', async () => {
+      const qs = `realm=dummy_realm_key&nonce=nonce&ts=${Date.now()}`
+      const sign = createHash('md5').update(qs + '.dummy_realm_secret').digest('hex')
+      const res = await http.get(`/jsapi/dummy_app_key/query?key=ticket&${qs}&sign=${sign}`)
+      expect(res).toEqual({key: 'ticket', value: 'ticket'})
+    })
+  })
 })

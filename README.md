@@ -44,12 +44,12 @@
 dBGMo51NUVEVlQo5
 ```
 
-- `POST /jsapi/config/:appid`
+- `POST /jsapi/:appid/config`
 
 > 获取wx.config接口数据.
 
 ```
-> POST /jsapi/config/wx12345678
+> POST /jsapi/wx12345678/config
 > Content-Type: application/json
 
 {
@@ -72,12 +72,16 @@ dBGMo51NUVEVlQo5
 }
 ```
 
-- `GET /jsapi/query/:key?appid=&realm=&nonce=&ts=&sign=`
+> 请求参数:
+
+- appid: 公众号AppId
+
+- `GET /jsapi/:appid/query?[key=]&realm=&nonce=&ts=&sign=`
 
 > 查询access_token和jsapi_ticket, **必须对请求进行签名验证**.
 
 ```
-> GET /jsapi/query/token?appid=wx12345678&realm=R123&nonce=caa3c9d793b&ts=1589203758&sign=6f3c945fc7a738c1ec80efc8a97187e0
+> GET /jsapi/wx12345678/query?key=token&realm=R123&nonce=caa3c9d793b&ts=1589203758&sign=6f3c945fc7a738c1ec80efc8a97187e0
 
 < HTTP/1.1 200 OK
 < Content-Type: application/json; charset=utf-8
@@ -90,8 +94,8 @@ dBGMo51NUVEVlQo5
 
 > 请求参数:
 
-- key: `token` or `ticket`
 - appid: 公众号AppId
+- key: 可选, 指定要查询的key, 有效值为:`token` or `ticket`, 默认为`token`
 - realm: config文件中定义的外部应用key
 - nonce: 随机字符串
 - ts: Unix时间戳(ms), 注意: 与服务器的时间差不能超过5分钟

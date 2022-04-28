@@ -4,6 +4,7 @@ const helmet = require('helmet')
 const configure = require('./configure')
 
 const app = express()
+app.enable('trust proxy')
 app.disable('x-powered-by')
 app.use(express.json())
 app.use(helmet())

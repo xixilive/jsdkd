@@ -16,6 +16,11 @@ module.exports = function configure(app) {
     next()
   })
 
+  // GET /
+  app.get('/', middlewares.challenge, (req, res) => {
+    res.end()
+  })
+
   // GET /ping
   app.get('/ping', middlewares.pong)
 

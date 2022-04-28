@@ -1,6 +1,6 @@
 {
   "name": "jsdkd",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "wechat's media platform jssdk utility server",
   "author": "xixilive@gmail.com",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "lint": "eslint src __tests__",
     "test": "yarn lint && jest . --forceExit --detectOpenHandles",
     "start": "NODE_ENV=production node ./src/server.js",
-    "dev": "nodemon ./src/server.js",
+    "dev": "DEBUG=* nodemon ./src/server.js",
     "docker:build": "docker build -t jsdkd ."
   },
   "engines": {
